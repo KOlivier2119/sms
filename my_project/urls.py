@@ -19,4 +19,5 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('records/', views.attendance_list, name='attendance_list'),
 ]
