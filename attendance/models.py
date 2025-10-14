@@ -11,7 +11,7 @@ class Student(models.Model):
         db_table = "students"
 
     def __str__(self):
-        return f"{self.name} - {self.classroom}"
+        return self.name + " - " + self.classroom   
 
 
 class Attendance(models.Model): 
