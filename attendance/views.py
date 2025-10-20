@@ -1,5 +1,8 @@
-from django.shortcuts import render
-from attendance.models import Attendance
+from django.shortcuts import render, redirect
+from attendance.models import Attendance, Student
+from django.http import JsonResponse
+from django.utils import timezone
+from attendance.forms import StudentForm
 
 # Create your views here.
 
@@ -8,6 +11,16 @@ def attendance_list(request):
     return render(request, 'attendance_list.html', {
         'records': records
     })
+
+def add_student(request): 
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('mark_attendance')
+    else: 
+        form = StudentForm()
+    return render(request, 'attendance/add_student.html', {'form': form})
 
 def mark_attendance(request):
     students = Student.objects.all()
