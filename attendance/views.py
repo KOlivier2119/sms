@@ -17,10 +17,10 @@ def add_student(request):
         form = StudentForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('mark_attendance')
+            return redirect('attendance_list')
     else: 
         form = StudentForm()
-    return render(request, 'attendance/add_student.html', {'form': form})
+    return render(request, 'add_student.html', {'form': form})
 
 def mark_attendance(request):
     students = Student.objects.all()
@@ -36,4 +36,4 @@ def mark_attendance(request):
             )
         return redirect('attendance_list')
     
-    return render(request, 'mark_attendance.html')
+    return render(request, 'attendance_list.html')
