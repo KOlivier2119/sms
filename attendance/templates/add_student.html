@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add student</title>
 </head>
-<body >
+
+<body>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Save</button>
+        {% if messages %}
+        {% for message in messages %}
+        <div>
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+
     </form>
 </body>
+
 </html>
